@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Database\Factories\DocenteFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Docente extends Model
 {
-    /** @use HasFactory<\Database\Factories\DocenteFactory> */
+    protected $guarded = [];
+
+    /** @use HasFactory<DocenteFactory> */
     use HasFactory;
 
     public function estudiantesConsejero(): HasMany
@@ -21,4 +24,3 @@ class Docente extends Model
         return $this->belongsToMany(Grupo::class);
     }
 }
-
