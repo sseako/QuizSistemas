@@ -18,7 +18,9 @@ class EstudianteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'carne' => fake()->unique()->bothify('C#####'),
+            'nombre' => fake()->firstName(),
+            'apellidos' => fake()->lastName(),
         ];
     }
 }
