@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('estudiante_matriculados', function (Blueprint $table) {
             $table->id();
-            $table->float('nota');
+            $table->float('nota')->nullable();
             $table->foreignId('estudiante_id')->constrained('estudiantes');
             $table->foreignId('grupo_id')->constrained('grupos');
+            $table->unique(['grupo_id', 'estudiante_id']);
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Docente;
 use App\Models\Estudiante;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +22,7 @@ class EstudianteFactory extends Factory
             'carne' => fake()->unique()->bothify('C#####'),
             'nombre' => fake()->firstName(),
             'apellidos' => fake()->lastName(),
+            'docente_id' => Docente::factory(),
         ];
     }
 }
