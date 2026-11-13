@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Factories\EstudianteFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Estudiante extends Model
@@ -16,7 +17,7 @@ class Estudiante extends Model
 
     public function consejero(): BelongsTo
     {
-        return $this->belongsTo(Docente::class);
+        return $this->belongsTo(Docente::class, 'docente_id');
     }
 
     public function grupo(): BelongsToMany

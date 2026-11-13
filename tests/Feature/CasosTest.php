@@ -6,7 +6,6 @@ use App\Models\Estudiante;
 use App\Models\Grupo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
 
 test('Caso 1: Registrar un grupo con toda su información y su curso', function () {
     $curso = Curso::create([

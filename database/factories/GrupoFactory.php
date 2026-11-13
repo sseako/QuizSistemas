@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Curso;
 use App\Models\Grupo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,11 @@ class GrupoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'curso_id' => Curso::factory(),
+            'ano' => 2026,
+            'numeroCiclo' => 2,
+            'numeroGrupo' => 1,
+            'abierto' => false,
         ];
     }
 }

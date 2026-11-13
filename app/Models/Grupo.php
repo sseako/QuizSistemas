@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use InvalidArgumentException;
 
 class Grupo extends Model
 {
@@ -26,7 +27,7 @@ class Grupo extends Model
 
     public function docentes(): BelongsToMany
     {
-        return $this->belongsToMany(Docente::class);
+        return $this->belongsToMany(Docente::class, 'grupo_docente');
     }
 
     public function estudiante(): BelongsToMany
@@ -59,4 +60,20 @@ class Grupo extends Model
         $this->abierto = true;
         $this->save();
     }
+    public function estudiantes()
+{
+    return $this->belongsToMany(Estudiante::class, 'estudiante_matriculados')
+                ->using(EstudianteMatriculado::class)
+                ->withPivot('nota');
+}
+
+public function registrarNota(Estudiante $e, float $nota): void
+{
+    if ($nota < 0 || $nota > 10) {
+        throw new InvalidArgumentException('La nota debe estar entre 0 y 10.');
+    }
+    
+    $this->estudiantes()->updateExistingPivot($e->id, ['nota' => $nota]);
+}
+
 }
